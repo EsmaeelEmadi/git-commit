@@ -1,0 +1,12 @@
+[package]
+name = "git-commit"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+clap = "4.5.31"
+dotenv = "0.15.0"
+reqwest = "0.12.12"
+serde = "1.0.218"
+serde_json = "1.0.139"
+tokio = "1.43.0"
