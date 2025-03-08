@@ -4,9 +4,14 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-clap = "4.5.31"
+anyhow = "1.0.97"
+clap = { version = "4.5.31", features = ["derive"] }
+dialoguer = "0.11.0"
 dotenv = "0.15.0"
-reqwest = "0.12.12"
-serde = "1.0.218"
+regex = "1.11.1"
+reqwest = { version = "0.12.12", features = ["json"] }
+serde = { version = "1.0.218", features = ["derive"] }
 serde_json = "1.0.139"
-tokio = "1.43.0"
+serde_yml = "0.0.12"
+spinners = "4.1.1"
+tokio = { version = "1.43.0", features = ["full"] }
