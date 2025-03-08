@@ -2,8 +2,6 @@ use std::{process, thread::Result};
 
 use crate::types::{ChatRequest, ChatResponse, Config, Message};
 
-const DEFAULT_DESCRIPTION: &str = "Generate commit message for these changes";
-
 pub async fn get_commit_from_deepseek(
     description: &Option<String>,
     config: &Config,
@@ -13,7 +11,7 @@ pub async fn get_commit_from_deepseek(
     let client = reqwest::Client::new();
 
     let desc: String = match description {
-        None => DEFAULT_DESCRIPTION.to_string(),
+        None => String::new(),
         _ => description.clone().expect("Error cloning the description"),
     };
 
@@ -25,9 +23,10 @@ pub async fn get_commit_from_deepseek(
         Message {
             role: "user".to_string(),
             content: format!(
-                "Generate commit message for these changes:\n\n\
-            **Description**\n{}\n\n\
-            **Git Diff**\n```diff\n{}\n```",
+                "note:Generate commit message for these changes\n\n\
+                note: if there is a description provided, try to create the commit message around it\n\n
+                **Description**\n{}\n\n\
+                **Git Diff**\n```diff\n{}\n```",
                 desc, diff
             ),
         },
