@@ -360,6 +360,23 @@ dependencies = [
 ]
 
 [[package]]
+name = "gch"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "clap",
+ "dialoguer",
+ "dotenv",
+ "regex",
+ "reqwest",
+ "serde",
+ "serde_json",
+ "serde_yml",
+ "spinners",
+ "tokio",
+]
+
+[[package]]
 name = "getrandom"
 version = "0.2.15"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -387,23 +404,6 @@ name = "gimli"
 version = "0.31.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "07e28edb80900c19c28f1072f2e8aeca7fa06b23cd4169cefe1af5aa3260783f"
-
-[[package]]
-name = "git-commit"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "clap",
- "dialoguer",
- "dotenv",
- "regex",
- "reqwest",
- "serde",
- "serde_json",
- "serde_yml",
- "spinners",
- "tokio",
-]
 
 [[package]]
 name = "h2"
