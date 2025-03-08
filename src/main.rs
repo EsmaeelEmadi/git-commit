@@ -5,7 +5,6 @@ mod utils;
 use std::process;
 
 use clap::Parser;
-use dialoguer::Confirm;
 use spinners::{Spinner, Spinners};
 use utils::{create_git_commit, get_commit_from_deepseek, run_pre_commits};
 
@@ -58,23 +57,12 @@ async fn main() {
 
         spinner.stop_with_newline();
 
-        match Confirm::new()
-            .with_prompt(format!("Commit with message:\n{}\nProceed?", &response))
-            .interact()
-        {
-            Err(_) => process::exit(1),
-            Ok(true) => {
-                if let Err(e) = create_git_commit(&response) {
-                    eprintln!("Error: {}", e);
-                    process::exit(1);
-                }
-                println!("Commit created successfully");
-                process::exit(0);
-            }
-            Ok(false) => {
-                process::exit(1);
-            }
-        };
+        if let Err(e) = create_git_commit(&response) {
+            eprintln!("Error: {}", e);
+            process::exit(1);
+        }
+        println!("Commit created successfully");
+        process::exit(0);
     } else {
         println!("\nNot a Git repository");
         process::exit(1);
